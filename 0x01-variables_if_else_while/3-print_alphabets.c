@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 
 /**
@@ -7,12 +8,12 @@
  */
 int main(void)
 {
-	int lt;
+	int ch;
 
-	for (lt = 'a'; lt <= 'z'; lt++)
-		putchar(lt);
-	for (lt = 'A'; lt <= 'Z'; lt++)
-		putchar(lt);
+	for (ch = 'a'; ch <= 'z'; ch++)
+		putchar(ch);
+	for (ch = 'A'; ch <= 'Z'; ch++)
+		putchar(ch);
 	putchar('\n');
 	return (0);
-
+}
