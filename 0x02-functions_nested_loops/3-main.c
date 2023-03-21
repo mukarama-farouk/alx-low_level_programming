@@ -1,8 +1,7 @@
 #include "main.h"
 
 /**
- * main - check the code.
- *
+ * main - _prints 10 times the alphabet, in lowercase
  * Return: Always 0.
  */
 
