@@ -18,10 +18,12 @@ op_t ops[] = {
 {NULL, NULL}
 };
 int i;
-
-while (ops[i].op != NULL && *(ops[i].op) != *s)
-
+while (i < 6)
+{
+	if (s[0] == ops->op[i])
+		break;
 	i++;
-
-return (ops[i].f);
 }
+return (ops[i / 2].f);
+}
+
