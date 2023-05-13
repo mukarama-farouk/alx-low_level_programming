@@ -5,6 +5,7 @@
  * cp_file - copys the content of one file to another.
  * @file_from: first file
  * @file_to: second file
+ * @argv: Argument vector
  *
  * Return: no return
  */

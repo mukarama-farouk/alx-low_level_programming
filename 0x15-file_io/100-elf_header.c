@@ -6,10 +6,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void elf_file(unsigned char* e_ident);
-void print_ELF_magic(unsigned char* e_ident);
-void print_data_of_ELF(unsigned char* e_ident);
-void print_ELF_class(unsigned char* e_ident);
+void elf_file(unsigned char *e_ident);
+void print_ELF_magic(unsigned char *e_ident);
+void print_data_of_ELF(unsigned char *e_ident);
+void print_ELF_class(unsigned char *e_ident);
 void print_version(unsigned char *e_ident);
 void print_os_abi(unsigned char *e_ident);
 void print_abi_version(unsigned char *e_ident);
@@ -21,20 +21,16 @@ void close_elf_file(int elf);
 /**
  * elf_file - Checks to see id the file is an ELF file
  * @e_ident: Elf identification
- * 
  * Return: No return
 */
 void elf_file(unsigned char* e_ident)
 {
-    int i;
+   int i;
 
-    for (i = 0; i < 4; i++)
-    {
-        if (e_ident[i] != 0x7f &&
-        e_ident[i] != 'E' &&
-        e_ident[i] != 'L' &&
-        e_ident[i] != 'F')
-        {
+   for (i = 0; i < 4; i++)
+   {
+   	if (e_ident[i] != 0x7f && e_ident[i] != 'E' && e_ident[i] != 'L' && e_ident[i] != 'F')
+   	{	
             dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
             exit(98);
         }
@@ -161,7 +157,6 @@ void print_os_abi(unsigned char *e_ident)
 	case ELFOSABI_IRIX:
 		printf("UNIX - IRIX\n");
 		break;
-	case ELFOSABI_FREEBSD:
 		printf("UNIX - FreeBSD\n");
 		break;
 	case ELFOSABI_TRU64:
@@ -315,3 +310,4 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	return (0);
 }
 
+#include <elf.h>
