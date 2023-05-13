@@ -23,90 +23,75 @@ void close_elf_file(int elf);
  * @e_ident: Elf identification
  * Return: No return
 */
-void elf_file(unsigned char* e_ident)
+void elf_file(unsigned char *e_ident)
 {
-   int i;
+int i;
 
-   for (i = 0; i < 4; i++)
-   {
-   	if (e_ident[i] != 0x7f && e_ident[i] != 'E' && e_ident[i] != 'L' && e_ident[i] != 'F')
-   	{	
-            dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
-            exit(98);
-        }
-    }
+for (i = 0; i < 4; i++)
+{
+	if (e_ident[i] != 0x7f && e_ident[i] != 'E'
+	&& e_ident[i] != 'L' && e_ident[i] != 'F')
+	{
+		dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
+		exit(98);
+	}
+}
 }
 
 /**
  * print_ELF_magic - Prints the magic numbers of an ELF header
  * @e_ident: Elf id
- * 
  * Return: No return
 */
-void print_ELF_magic(unsigned char* e_ident)
+void print_ELF_magic(unsigned char *e_ident)
 {
-    int i;
+int i;
 
-    printf("Magic Number:    ");
-    for (i = 0; i < EI_NIDENT; i++)
-    {
-        printf("%02x ", e_ident[i]);
-    }
-    printf("\n");
+printf("Magic Number:    ");
+for (i = 0; i < EI_NIDENT; i++)
+{
+	printf("%02x ", e_ident[i]);
+}
+	printf("\n");
 }
 
 /**
  * print_data_of_ELF - Prints the data of ELF header
  * @e_ident: Elf ID
- * 
+ *
  * Return: no return
 */
-void print_data_of_ELF(unsigned char* e_ident)
+void print_data_of_ELF(unsigned char *e_ident)
 {
-    uint8_t data;  
-    data = e_ident[EI_DATA];		
-    printf("Data of ELF:      ");
-
-
-    if (data == ELFDATANONE)
-    {
-        printf("none\n");
-    }else if (data == ELFDATA2LSB)
-    {
-        printf("2's complement, little endian\n");
-    }else if ( data == ELFDATA2MSB)
-    {
-        printf("2's complement, big endian\n");
-    }
+uint8_t data;
+data = e_ident[EI_DATA];
+printf("Data of ELF:      ");
+if (data == ELFDATANONE)
+	printf("none\n");
+else if (data == ELFDATA2LSB)
+	printf("2's complement, little endian\n");
+else if (data == ELFDATA2MSB)
+	printf("2's complement, big endian\n");
 }
 
 /**
  * print_ELF_class - Prints the class of ELF header
  * @e_indent: ELF ID
- * 
  * Return: no return
 */
-void print_ELF_class(unsigned char* e_ident)
+void print_ELF_class(unsigned char *e_ident)
 {
-    uint8_t elf_class;
-    elf_class  = e_ident[EI_CLASS];
-    printf("class:                               ");
-
-
-    if (elf_class == ELFCLASSNONE)
-    {
-        printf("none\n");
-    }else if (elf_class == ELFCLASS32)
-    {
-        printf("ELF32\n");
-    }else if (elf_class == ELFCLASS64)
-    {
-        printf("ELF64\n");
-    }else
-    {
-        printf("<Unknown:0x%x>\n", elf_class);
-    }
-
+uint8_t elf_class;
+elf_class  = e_ident[EI_CLASS];
+printf("class:                               ");
+if (elf_class == ELFCLASSNONE)
+	printf("none\n");
+else if (elf_class == ELFCLASS32)
+	printf("ELF32\n");
+else if (elf_class == ELFCLASS64)
+	printf("ELF64\n");
+else
+	printf("<Unknown:0x%x>\n", elf_class);
 }
 
 /**
@@ -309,5 +294,3 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	close_elf_file(o);
 	return (0);
 }
-
-#include <elf.h>
